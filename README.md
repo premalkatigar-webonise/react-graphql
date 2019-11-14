@@ -1,2 +1,2 @@
 # react-graphql
-It describes how to communicate and fetch data with graphql.
+It describes how to fetch data with graphql.
