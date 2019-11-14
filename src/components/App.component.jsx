@@ -1,6 +1,7 @@
 import React from 'react';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
+import List from './List.component.jsx';
 
 function App(){
     return(
@@ -12,6 +13,10 @@ function App(){
                         repositories (last:3){
                             nodes {
                                 name
+                                createdAt
+                                databaseId
+                                homepageUrl
+                                isLocked
                             }
                         }
                     }
@@ -22,8 +27,11 @@ function App(){
                     if (error) return <p>Something Went Wrong.</p>
                     return <div>
                         <ul>
-                            {data.viewer.repositories.nodes.map((details, key) => { return <li key={key}>{details.name}</li> })}
+                            {data.viewer.repositories.nodes.map((details, key) => { 
+                                return <List data={details} key={key} />
+                            })}
                         </ul>
+                        
                     </div>
                 }}
             </Query>
